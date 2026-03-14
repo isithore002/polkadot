@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-03-14T10:15:00Z",
+  "network": "polkadotHubTestnet",
+  "results": {
+    "hashLeaf":     { "solidity": 12842, "rust": 4120  },
+    "hashPair":     { "solidity": 19450, "rust": 6810  },
+    "verifyProof":  { "solidity": 46100, "rust": 15420 },
+    "storageWrite": { "solidity": 22400, "rust": 8200  },
+    "storageRead":  { "solidity": 2150,  "rust": 890   },
+    "fibonacci":    { "solidity": 8940,  "rust": 1950  }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@pvmark/benchmarks",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "benchmark": "npx ts-node runBenchmark.ts",
+    "compare": "npx ts-node gasCompare.ts"
+  },
+  "dependencies": {
+    "ethers": "^6.11.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0"
+  }
+}

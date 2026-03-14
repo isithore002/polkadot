@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+target/
+artifacts/
+cache/
+.env
+.vscode/
+*.swp
+.DS_Store
+contracts/pvm-rust/target/
+contracts/evm-solidity/artifacts/
+contracts/evm-solidity/cache/
+*.log
+coverage/
+create_files.py

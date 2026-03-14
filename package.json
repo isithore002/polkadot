@@ -1,0 +1,30 @@
+{
+  "name": "pvmark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PVMark - PolkaVM vs EVM Benchmark Suite",
+  "workspaces": [
+    "apps/*",
+    "contracts/evm-solidity",
+    "packages/*",
+    "benchmarks"
+  ],
+  "scripts": {
+    "build:rust": "cd contracts/pvm-rust && make build",
+    "build:solidity": "cd contracts/evm-solidity && npx hardhat compile",
+    "build": "npm run build:rust && npm run build:solidity",
+    "deploy": "bash scripts/deployAll.sh",
+    "benchmark": "ts-node scripts/benchmark.ts",
+    "gas:compare": "cd benchmarks && npx ts-node gasCompare.ts",
+    "dashboard": "cd apps/dashboard && npm run dev",
+    "setup": "bash scripts/setup.sh",
+    "clean": "cd contracts/pvm-rust && make clean"
+  },
+  "keywords": [
+    "polkavm",
+    "evm",
+    "benchmark",
+    "polkadot"
+  ],
+  "license": "MIT"
+}
