@@ -1,12 +1,23 @@
 {
-  "timestamp": "2026-03-14T10:15:00Z",
-  "network": "polkadotHubTestnet",
+  "timestamp": "2026-03-15T16:12:58.638Z",
+  "network": "polkadotHub-testnet (chain 420420417)",
+  "pvmContract": "0x2ed562F0F4a0Fd1028B7a1D3DF12F15c26Ff87ED",
+  "solContract": "0x88078cd470DA4d47487a58c111FD2fBec980996F",
   "results": {
-    "hashLeaf":     { "solidity": 12842, "rust": 4120  },
-    "hashPair":     { "solidity": 19450, "rust": 6810  },
-    "verifyProof":  { "solidity": 46100, "rust": 15420 },
-    "storageWrite": { "solidity": 22400, "rust": 8200  },
-    "storageRead":  { "solidity": 2150,  "rust": 890   },
-    "fibonacci":    { "solidity": 8940,  "rust": 1950  }
+    "hashLeaf": {
+      "revm": 1044,
+      "pvm": 1095,
+      "savings": "-4.9%"
+    },
+    "hashPair": {
+      "revm": 1210,
+      "pvm": 1261,
+      "savings": "-4.2%"
+    },
+    "verifyProof": {
+      "revm": 2185,
+      "pvm": 2236,
+      "savings": "-2.3%"
+    }
   }
 }

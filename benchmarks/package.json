@@ -7,6 +7,7 @@
     "compare": "npx ts-node gasCompare.ts"
   },
   "dependencies": {
+    "dotenv": "^16.3.0",
     "ethers": "^6.11.0"
   },
   "devDependencies": {

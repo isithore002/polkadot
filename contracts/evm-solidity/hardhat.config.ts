@@ -16,6 +16,7 @@ const config: HardhatUserConfig = {
       url: process.env.WESTEND_RPC || "https://eth-rpc-testnet.polkadot.io",
       chainId: 420420417,
       accounts: [PRIVATE_KEY],
+      timeout: 120000, // 2 minutes
     },
     hardhat: { chainId: 31337 },
   },
