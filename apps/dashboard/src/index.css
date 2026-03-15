@@ -366,6 +366,59 @@ body {
   color: var(--accent-pvm);
 }
 
+/* ── Info Sections ──────────────────────── */
+.finding-box, .how-it-works, .reproduce-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  backdrop-filter: blur(12px);
+}
+
+.finding-box {
+  border-left: 4px solid #E24B4A;
+}
+
+.finding-box h3, .how-it-works h3, .reproduce-section h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.finding-box p, .how-it-works p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.finding-box strong, .how-it-works strong {
+  color: #fff;
+}
+
+.how-it-works code, .finding-box code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.reproduce-section pre {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reproduce-section code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+}
+
 /* ── Footer ─────────────────────────────── */
 .footer {
   max-width: 960px;

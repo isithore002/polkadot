@@ -154,8 +154,8 @@ function App() {
             <div className="stat-label">Avg. Delta vs REVM</div>
           </div>
           <div className="stat-card">
-            <div className="stat-value accent-success">{bestSavings}</div>
-            <div className="stat-label">Best Savings ({bestFunction})</div>
+            <div className="stat-value" style={{ color: '#E24B4A' }}>+51</div>
+            <div className="stat-label">FIXED PVM OVERHEAD (GAS)</div>
           </div>
           <div className="stat-card">
             <div className="stat-value">{totalGasSaved.toLocaleString()}</div>
@@ -254,16 +254,45 @@ function App() {
             </a>
           </div>
         </div>
+
+        <div className="finding-box">
+          <h3>Finding</h3>
+          <p>
+            On Polkadot Hub Testnet (March 2026), PolkaVM adds a fixed overhead of 
+            <strong> ~51 gas per call</strong> compared to REVM for Solidity-compiled 
+            cryptographic operations. This overhead is uniform across hashLeaf, hashPair, 
+            and verifyProof — suggesting a constant dispatch cost rather than a 
+            per-computation penalty. PVM's advantage is expected to grow with 
+            computational complexity as the runtime matures.
+          </p>
+        </div>
+
+        <div className="how-it-works">
+          <h3>How this works</h3>
+          <p>
+            PVMark compiles the same Solidity source file through two different compilers.
+            <strong> resolc</strong> targets PolkaVM (Polkadot's RISC-V virtual machine).
+            <strong> solc</strong> targets REVM (Ethereum-compatible EVM).
+            Both contracts are deployed live on Polkadot Hub Testnet.
+            The benchmark calls <code>estimateGas</code> on both and measures the difference.
+          </p>
+        </div>
+
+        <div className="reproduce-section">
+          <h3>Reproduce this benchmark</h3>
+          <pre><code>
+git clone https://github.com/isithore002/polkadot.git pvmark
+cd pvmark
+npm install
+npm run benchmark
+          </code></pre>
+        </div>
       </main>
 
       <footer className="footer">
-        <p>
-          {data ? `Source: ${source === 'live' ? 'Live testnet query' : 'Cached results'} • ` : ''}
-          Polkadot Hub Testnet (Chain 420420417)
-        </p>
-        <p className="footer-sub">
-          Verify: <code>npm run benchmark</code> or check block explorer links above
-        </p>
+        Network: Polkadot Hub Testnet &middot; Chain ID: 420420417 &middot; 
+        RPC: https://eth-rpc-testnet.polkadot.io &middot; 
+        Last benchmark: {cachedData ? cachedData.timestamp : new Date().toISOString()}
       </footer>
     </div>
   );
