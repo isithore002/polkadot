@@ -3,4 +3,3 @@
 /* eslint-disable */
 export * as pvMarkSol from "./PVMark.sol";
 export { PVMarkPVM__factory } from "./PVMarkPVM__factory";
-export { Simple__factory } from "./Simple__factory";

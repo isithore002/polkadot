@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type {
   BaseContract,
+  BigNumberish,
   BytesLike,
   FunctionFragment,
   Result,
@@ -21,21 +22,51 @@ import type {
 
 export interface PVMarkPVMInterface extends Interface {
   getFunction(
-    nameOrSignature: "hashLeaf" | "hashPair" | "verifyProof"
+    nameOrSignature:
+      | "hashChain"
+      | "hashLeaf"
+      | "hashPair"
+      | "matrixMul"
+      | "modExp"
+      | "pairingLoop"
+      | "verifyProof"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "hashChain",
+    values: [BytesLike, BigNumberish]
+  ): string;
   encodeFunctionData(functionFragment: "hashLeaf", values: [BytesLike]): string;
   encodeFunctionData(
     functionFragment: "hashPair",
     values: [BytesLike, BytesLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "matrixMul",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "modExp",
+    values: [BigNumberish, BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "pairingLoop",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "verifyProof",
     values: [BytesLike, BytesLike[], BytesLike]
   ): string;
 
+  decodeFunctionResult(functionFragment: "hashChain", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hashLeaf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hashPair", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "matrixMul", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "modExp", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "pairingLoop",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "verifyProof",
     data: BytesLike
@@ -85,6 +116,12 @@ export interface PVMarkPVM extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  hashChain: TypedContractMethod<
+    [seed: BytesLike, rounds: BigNumberish],
+    [string],
+    "view"
+  >;
+
   hashLeaf: TypedContractMethod<[leaf: BytesLike], [string], "view">;
 
   hashPair: TypedContractMethod<
@@ -92,6 +129,16 @@ export interface PVMarkPVM extends BaseContract {
     [string],
     "view"
   >;
+
+  matrixMul: TypedContractMethod<[n: BigNumberish], [bigint], "view">;
+
+  modExp: TypedContractMethod<
+    [base: BigNumberish, exp: BigNumberish, mod: BigNumberish],
+    [bigint],
+    "view"
+  >;
+
+  pairingLoop: TypedContractMethod<[rounds: BigNumberish], [bigint], "view">;
 
   verifyProof: TypedContractMethod<
     [leaf: BytesLike, proof: BytesLike[], root: BytesLike],
@@ -104,11 +151,31 @@ export interface PVMarkPVM extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "hashChain"
+  ): TypedContractMethod<
+    [seed: BytesLike, rounds: BigNumberish],
+    [string],
+    "view"
+  >;
+  getFunction(
     nameOrSignature: "hashLeaf"
   ): TypedContractMethod<[leaf: BytesLike], [string], "view">;
   getFunction(
     nameOrSignature: "hashPair"
   ): TypedContractMethod<[left: BytesLike, right: BytesLike], [string], "view">;
+  getFunction(
+    nameOrSignature: "matrixMul"
+  ): TypedContractMethod<[n: BigNumberish], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "modExp"
+  ): TypedContractMethod<
+    [base: BigNumberish, exp: BigNumberish, mod: BigNumberish],
+    [bigint],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "pairingLoop"
+  ): TypedContractMethod<[rounds: BigNumberish], [bigint], "view">;
   getFunction(
     nameOrSignature: "verifyProof"
   ): TypedContractMethod<

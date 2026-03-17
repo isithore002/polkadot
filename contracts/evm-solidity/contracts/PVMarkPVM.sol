@@ -48,4 +48,59 @@ contract PVMarkPVM {
 
         return computedHash == root;
     }
+
+    /**
+     * @dev Benchmarks a heavy computational loop of Keccak-256 hashes.
+     * This simulates a compute-bound operation (e.g., ZK or heavy crypto)
+     * to demonstrate PVM versus EVM efficiency.
+     */
+    function hashChain(bytes32 seed, uint256 rounds) external pure returns (bytes32) {
+        bytes32 current = seed;
+        for (uint256 i = 0; i < rounds; i++) {
+            current = keccak256(abi.encodePacked(current));
+        }
+        return current;
+    }
+
+    /**
+     * @dev Simulates a ZK-verifier workload: sequential keccak rounds that
+     * mix accumulator state with the loop index, approximating the kind of
+     * hash-chain computation inside a proof verifier.
+     */
+    function pairingLoop(uint256 rounds) external pure returns (uint256) {
+        uint256 acc = 1;
+        for (uint256 i = 0; i < rounds; i++) {
+            acc = uint256(keccak256(abi.encodePacked(acc, i)));
+        }
+        return acc;
+    }
+
+    /**
+     * @dev Simulates RSA-style big-integer exponentiation via repeated
+     * multiply-mod. Stresses integer arithmetic throughput on both VMs.
+     */
+    function modExp(uint256 base, uint256 exp, uint256 mod) external pure returns (uint256) {
+        uint256 result = 1;
+        uint256 b = base % mod;
+        for (uint256 i = 0; i < exp; i++) {
+            result = (result * b) % mod;
+        }
+        return result;
+    }
+
+    /**
+     * @dev Triple-nested loop summing i*j*k products, benchmarking raw
+     * integer ALU throughput under O(n³) iteration count.
+     */
+    function matrixMul(uint256 n) external pure returns (uint256) {
+        uint256 sum = 0;
+        for (uint256 i = 0; i < n; i++) {
+            for (uint256 j = 0; j < n; j++) {
+                for (uint256 k = 0; k < n; k++) {
+                    sum += i * j * k;
+                }
+            }
+        }
+        return sum;
+    }
 }

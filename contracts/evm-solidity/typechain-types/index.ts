@@ -4,7 +4,6 @@
 import type * as pvMarkSol from "./PVMark.sol";
 export type { pvMarkSol };
 export type { PVMarkPVM } from "./PVMarkPVM";
-export type { Simple } from "./Simple";
 export * as factories from "./factories";
 export type { IERC20Precompile } from "./PVMark.sol/IERC20Precompile";
 export { IERC20Precompile__factory } from "./factories/PVMark.sol/IERC20Precompile__factory";
@@ -15,4 +14,3 @@ export { IXcm__factory } from "./factories/PVMark.sol/IXcm__factory";
 export type { PVMark } from "./PVMark.sol/PVMark";
 export { PVMark__factory } from "./factories/PVMark.sol/PVMark__factory";
 export { PVMarkPVM__factory } from "./factories/PVMarkPVM__factory";
-export { Simple__factory } from "./factories/Simple__factory";

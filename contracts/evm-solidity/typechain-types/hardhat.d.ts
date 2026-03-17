@@ -33,10 +33,6 @@ declare module "hardhat/types/runtime" {
       name: "PVMarkPVM",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PVMarkPVM__factory>;
-    getContractFactory(
-      name: "Simple",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Simple__factory>;
 
     getContractAt(
       name: "IERC20Precompile",
@@ -63,11 +59,6 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.PVMarkPVM>;
-    getContractAt(
-      name: "Simple",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Simple>;
 
     deployContract(
       name: "IERC20Precompile",
@@ -89,10 +80,6 @@ declare module "hardhat/types/runtime" {
       name: "PVMarkPVM",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PVMarkPVM>;
-    deployContract(
-      name: "Simple",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Simple>;
 
     deployContract(
       name: "IERC20Precompile",
@@ -119,11 +106,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PVMarkPVM>;
-    deployContract(
-      name: "Simple",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Simple>;
 
     // default types
     getContractFactory(

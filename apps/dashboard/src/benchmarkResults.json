@@ -1,23 +1,28 @@
 {
-  "timestamp": "2026-03-15T16:12:58.638Z",
+  "timestamp": "2026-03-17T02:58:21.772Z",
   "network": "polkadotHub-testnet (chain 420420417)",
-  "pvmContract": "0x2ed562F0F4a0Fd1028B7a1D3DF12F15c26Ff87ED",
-  "solContract": "0x88078cd470DA4d47487a58c111FD2fBec980996F",
+  "pvmContract": "0xdB2ea32c654523F104f6c592020E1DE8C547b675",
+  "solContract": "0x3396a2BDd27391990DAcb33E97ed8063661EE274",
   "results": {
     "hashLeaf": {
       "revm": 1044,
-      "pvm": 1095,
-      "savings": "-4.9%"
+      "pvm": 1102,
+      "savings": "-5.6%"
     },
     "hashPair": {
       "revm": 1210,
-      "pvm": 1261,
-      "savings": "-4.2%"
+      "pvm": 1268,
+      "savings": "-4.8%"
     },
     "verifyProof": {
       "revm": 2185,
-      "pvm": 2236,
-      "savings": "-2.3%"
+      "pvm": 2243,
+      "savings": "-2.7%"
+    },
+    "hashChain": {
+      "revm": 1908,
+      "pvm": 3600,
+      "savings": "-88.7%"
     }
   }
 }

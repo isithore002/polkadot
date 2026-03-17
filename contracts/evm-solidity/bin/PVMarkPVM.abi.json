@@ -3,6 +3,30 @@
     "inputs": [
       {
         "internalType": "bytes32",
+        "name": "seed",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rounds",
+        "type": "uint256"
+      }
+    ],
+    "name": "hashChain",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
         "name": "leaf",
         "type": "bytes32"
       }
@@ -37,6 +61,73 @@
         "internalType": "bytes32",
         "name": "",
         "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "n",
+        "type": "uint256"
+      }
+    ],
+    "name": "matrixMul",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "base",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "exp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "mod",
+        "type": "uint256"
+      }
+    ],
+    "name": "modExp",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "rounds",
+        "type": "uint256"
+      }
+    ],
+    "name": "pairingLoop",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "pure",

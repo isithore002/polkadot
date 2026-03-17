@@ -10,10 +10,11 @@
     "benchmarks"
   ],
   "scripts": {
-    "build:rust": "cd contracts/pvm-rust && make build",
+    "build:rust": "cd contracts/pvm-rust && make all",
     "build:solidity": "cd contracts/evm-solidity && npx hardhat compile",
     "build": "npm run build:rust && npm run build:solidity",
     "deploy": "bash scripts/deployAll.sh",
+    "deploy:standalone": "npx ts-node scripts/standalone-deploy.ts",
     "benchmark": "cd benchmarks && npx ts-node runBenchmark.ts",
     "gas:compare": "cd benchmarks && npx ts-node gasCompare.ts",
     "dashboard": "cd apps/dashboard && npm run dev",

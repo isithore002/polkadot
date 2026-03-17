@@ -19,6 +19,10 @@ const BENCHMARK_ABI = [
   "function hashLeaf(bytes32 leaf) view returns (bytes32)",
   "function hashPair(bytes32 left, bytes32 right) view returns (bytes32)",
   "function verifyProof(bytes32 leaf, bytes32[] proof, bytes32 root) view returns (bool)",
+  "function hashChain(bytes32 seed, uint256 rounds) view returns (bytes32)",
+  "function pairingLoop(uint256 rounds) view returns (uint256)",
+  "function modExp(uint256 base, uint256 exp, uint256 mod) view returns (uint256)",
+  "function matrixMul(uint256 n) view returns (uint256)",
 ];
 
 // The Solidity wrapper has *Sol and *Rust suffixed variants
@@ -67,14 +71,31 @@ async function estimateWithTimeout(
   method: string,
   args: any[],
   label: string,
-  timeoutMs = 30000
+  timeoutMs = 60000,
+  retries = 3
 ): Promise<bigint> {
-  return Promise.race([
-    contract[method].estimateGas(...args),
-    new Promise<bigint>((_, reject) =>
-      setTimeout(() => reject(new Error(`Timeout estimating ${label}`)), timeoutMs)
-    ),
-  ]);
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await Promise.race([
+        contract[method].estimateGas(...args),
+        new Promise<bigint>((_, reject) =>
+          setTimeout(() => reject(new Error(`Timeout estimating ${label}`)), timeoutMs)
+        ),
+      ]);
+    } catch (err: any) {
+      const isTimeout =
+        err.code === "TIMEOUT" ||
+        err.message?.includes("Timeout") ||
+        err.message?.includes("timeout");
+      if (isTimeout && i < retries - 1) {
+        console.log(`  Timeout on attempt ${i + 1}, retrying in 5s...`);
+        await new Promise((r) => setTimeout(r, 5000));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw new Error("All retries failed");
 }
 
 async function main() {
@@ -82,7 +103,11 @@ async function main() {
   console.log("║         PVMark Benchmark Suite               ║");
   console.log("╚══════════════════════════════════════════════╝\n");
 
-  const provider = new ethers.JsonRpcProvider(RPC_URL);
+  const provider = new ethers.JsonRpcProvider(RPC_URL, undefined, {
+    staticNetwork: true,
+    polling: true,
+    pollingInterval: 4000,
+  });
   const network = await provider.getNetwork();
   console.log(`Network: chainId=${network.chainId}, RPC=${RPC_URL}\n`);
 
@@ -124,6 +149,22 @@ async function main() {
     {
       name: "verifyProof",
       args: [LEAF, proof, root],
+    },
+    {
+      name: "hashChain",
+      args: [LEAF, 1000],
+    },
+    {
+      name: "pairingLoop",
+      args: [500],
+    },
+    {
+      name: "modExp",
+      args: [7n, 500n, 1000000007n],
+    },
+    {
+      name: "matrixMul",
+      args: [16n],
     },
   ];
 

@@ -3,19 +3,13 @@ const path = require('path');
 const { resolc } = require(path.resolve(__dirname, '../../node_modules/@parity/resolc/dist/resolc.js'));
 
 async function main() {
-    const contractPath = path.resolve(__dirname, 'contracts/PVMark.sol');
-    const source = fs.readFileSync(contractPath, 'utf8');
-    const simplePath = path.resolve(__dirname, 'contracts/Simple.sol');
-    const simpleSource = fs.readFileSync(simplePath, 'utf8');
     const pvmPath = path.resolve(__dirname, 'contracts/PVMarkPVM.sol');
     const pvmSource = fs.readFileSync(pvmPath, 'utf8');
-    
+
     // Construct the standard JSON input for resolc
     const input = JSON.stringify({
         language: 'Solidity',
         sources: {
-            'contracts/PVMark.sol': { content: source },
-            'contracts/Simple.sol': { content: simpleSource },
             'contracts/PVMarkPVM.sol': { content: pvmSource }
         },
         settings: {

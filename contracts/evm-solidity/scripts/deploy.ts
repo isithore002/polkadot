@@ -24,14 +24,16 @@ async function main() {
   console.log("\n--- Step 1: Deploy PolkaVM contract (resolc) ---");
   const rustBinPath = path.join(__dirname, "../../pvm-rust/contract.polkavm");
   const resolcBinPath = path.join(__dirname, "../bin/PVMarkPVM.polkavm");
-  
+
+  // Prefer resolc binary when it exists — it contains the full 7-function benchmark ABI.
+  // Fall back to the hand-written Rust binary only when no resolc binary is present.
   let pvmBinPath = "";
-  if (fs.existsSync(rustBinPath)) {
-    pvmBinPath = rustBinPath;
-    console.log("Using raw Rust binary.");
-  } else if (fs.existsSync(resolcBinPath)) {
+  if (fs.existsSync(resolcBinPath)) {
     pvmBinPath = resolcBinPath;
-    console.log("Using resolc fallback binary.");
+    console.log("Using resolc-compiled binary (full benchmark ABI).");
+  } else if (fs.existsSync(rustBinPath)) {
+    pvmBinPath = rustBinPath;
+    console.log("Using raw Rust binary (fallback).");
   }
 
   let pvmAddr = "0x0000000000000000000000000000000000000000";
