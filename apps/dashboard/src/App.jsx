@@ -264,7 +264,7 @@ function App() {
           <h3>Benchmark Finding — March 2026</h3>
           <p>
             On the current Polkadot Hub Testnet, <strong>REVM outperforms PolkaVM</strong> for
-            Solidity-compiled cryptographic operations. A consistent <strong>+58 gas fixed dispatch
+            these cryptographic operations. A consistent <strong>+58 gas fixed dispatch
             overhead</strong> appears on every call — visible across hashLeaf, hashPair, and
             verifyProof.
           </p>
