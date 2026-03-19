@@ -9,6 +9,10 @@ interface IXcm {
     function send(bytes32 dest, bytes calldata message) external;
 }
 
+interface IXcmV2 {
+    function send(uint32 dest, bytes calldata message) external;
+}
+
 interface IPVM {
     function hashLeaf(bytes32 leaf) external view returns (bytes32);
     function hashPair(bytes32 left, bytes32 right) external view returns (bytes32);
@@ -18,7 +22,7 @@ interface IPVM {
 contract PVMark {
     address public rustContract;
     address public constant ERC20_PRECOMPILE = 0x0000000000000000000000000000000000000402;
-    address public constant XCM_PRECOMPILE = 0x0000000000000000000000000000000000000404;
+    address public constant XCM_PRECOMPILE = 0x00000000000000000000000000000000000a0000;
 
     event BenchmarkResult(address indexed user, bytes32 root, bool verified);
 
@@ -88,5 +92,20 @@ contract PVMark {
         }
         
         return verified;
+    }
+
+    // --- XCM Precompile Integration (Method 3) ---
+
+    /**
+     * @notice Demonstrates XCM precompile integration from Solidity
+     * @dev Sends a minimal XCM message to show PolkaVM → system pallet capability
+     * @param paraId Target parachain ID (e.g., 1000 for Asset Hub)
+     */
+    function sendXcmPing(uint32 paraId) external {
+        // Minimal XCM message (just demonstrates precompile call capability)
+        bytes memory message = hex"00"; // Dummy payload
+
+        // Call XCM precompile (0x804 is common XCM send interface)
+        IXcmV2(XCM_PRECOMPILE).send(paraId, message);
     }
 }

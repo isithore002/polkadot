@@ -3,7 +3,14 @@ import * as fs from "fs";
 import * as path from "path";
 
 async function main() {
-  const rustAddr = "0xf2381ae6b498b06ca52b665344e1f99c3cf08f57";
+  const rustAddr = process.env.PVMARK_RUST_ADDRESS || "0x0000000000000000000000000000000000000000";
+
+  if (rustAddr === "0x0000000000000000000000000000000000000000") {
+    console.error("❌ PVMARK_RUST_ADDRESS not set in .env");
+    console.error("   Please deploy the Rust contract first or set the address");
+    process.exit(1);
+  }
+
   console.log("Deploying PVMark Solidity contract with Rust address:", rustAddr);
 
   const [deployer] = await ethers.getSigners();
