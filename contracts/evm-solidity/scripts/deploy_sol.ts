@@ -3,10 +3,10 @@ import * as fs from "fs";
 import * as path from "path";
 
 async function main() {
-  const rustAddr = process.env.PVMARK_RUST_ADDRESS || "0x0000000000000000000000000000000000000000";
+  const rustAddr = process.env.PVMARK_PVM_ADDRESS || "0x0000000000000000000000000000000000000000";
 
   if (rustAddr === "0x0000000000000000000000000000000000000000") {
-    console.error("❌ PVMARK_RUST_ADDRESS not set in .env");
+    console.error("❌ PVMARK_PVM_ADDRESS not set in .env");
     console.error("   Please deploy the Rust contract first or set the address");
     process.exit(1);
   }

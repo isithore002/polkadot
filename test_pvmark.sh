@@ -5,8 +5,8 @@ if [ ! -f "$ENV_FILE" ]; then echo "ERROR: .env not found"; exit 1; fi
 source "$ENV_FILE"
 
 RPC="https://eth-rpc-testnet.polkadot.io/"
-PVM_CONTRACT="${PVMARK_RUST_ADDRESS}"
-EVM_WRAPPER="${PVMARK_SOLIDITY_ADDRESS}"
+PVM_CONTRACT="${PVMARK_PVM_ADDRESS}"
+EVM_WRAPPER="${PVMARK_SOL_ADDRESS}"
 TEST_INPUT="0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
 PASS=0; FAIL=0
 
